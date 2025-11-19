@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-surface-secondary: #242424;
+  --color-foreground: #ffffff;
+  --color-foreground-muted: #a0a0a0;
+  --color-primary: #e50914;
+  --color-primary-hover: #f40917;
+  --color-primary-light: #ff6b6b;
+  --color-accent: #00d4ff;
+  --color-accent-dark: #0096b3;
+  --radius: 0.5rem;
+  --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+* {
+  @apply border-surface;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-background text-foreground;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-secondary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground-muted;
+}
+
+/* Hide scrollbar for movie rows */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth transitions */
+@layer components {
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(to right, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.3), transparent);
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* Horizontal scrollbar height */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0d1117; /* track background (optional) */
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1a1f2b; /* your desired scrollbar color */
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #243144; /* slightly lighter on hover */
+}
