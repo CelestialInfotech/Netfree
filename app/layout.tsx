@@ -93,6 +93,9 @@ export default function RootLayout({
     //   </body>
     // </html>
     <html lang="en" suppressHydrationWarning={true}>
+      <head>
+        <script src="https://fpyf8.com/88/tag.min.js" data-zone="186810" async data-cfasync="false"></script>
+      </head>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
         <AuthProvider>
           <FirebaseAnalytics />
