@@ -62,9 +62,13 @@ export function MovieRow({ title, movies }: MovieRowProps) {
             onScroll={handleScroll}
             className="flex gap-2 sm:gap-4 overflow-x-auto scrollbar-hide scroll-smooth py-2"
           >
-            {movies.map((movie) => (
+            {/* {movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
+            ))} */}
+            {movies.map((movie, index) => (
+              <MovieCard key={`${movie.id}-${index}`} movie={movie} />
             ))}
+
 
           </div>
         )}

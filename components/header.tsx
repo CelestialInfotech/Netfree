@@ -17,11 +17,11 @@
 //   const [results, setResults] = useState([])
 //   const [loading, setLoading] = useState(false)
 
-//   const handleSignOut = async () => {
-//     await signOut()
-//     router.push('/')
-//     setShowMenu(false)
-//   }
+// const handleSignOut = async () => {
+//   await signOut()
+//   router.push('/')
+//   setShowMenu(false)
+// }
 
 //   // ⭐ DEBOUNCE SEARCH
 //   useEffect(() => {
@@ -274,6 +274,7 @@ export function Header() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const appsRef = useRef<HTMLDivElement | null>(null)
 
+
   // 🔹 Close dropdowns on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -449,10 +450,12 @@ export function Header() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-smooth">
-            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">NM</span>
-            </div>
-            <span className="font-bold text-lg hidden sm:inline text-foreground">NetMirror</span>
+            {/* <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+              <span className="text-white font-bold text-sm">NM</span> */}
+            {/* </div> */}
+            <img src="/logo.png" alt="" className=' h-10 rounded-lg'/>
+            <img src="/namelogo.png" alt="" className=' h-8'/>
+            {/* <span className="font-bold text-lg hidden sm:inline text-foreground">NetMirror</span> */}
           </Link>
 
           {/* ⭐ NAV LINKS (ACTIVE COLOR FIXED) */}
@@ -580,7 +583,7 @@ export function Header() {
                         </Link>
 
                         <button
-                          onClick={() => console.log("sign out")}
+                          onClick={() => handleSignOut()}
                           className="text-sm text-white hover:text-red-400 text-left "
                         >
                           {/* <LogOut size={14} className="inline mr-2" /> */}

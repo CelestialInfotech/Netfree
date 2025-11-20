@@ -143,7 +143,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-surface border-t border-surface-secondary mt-16 py-8 px-4">
         <div className="max-w-7xl mx-auto text-center text-foreground-muted text-sm">
-          <p>&copy; 2025 NetMirror. All rights reserved.</p>
+          <p>&copy; 2025 Netfree. All rights reserved.</p>
         </div>
       </footer>
     </main>
