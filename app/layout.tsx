@@ -3,6 +3,8 @@ import './globals.css'
 import { AuthProvider } from '@/context/auth-context'
 import { Toaster } from '@/components/ui/toaster'
 import 'plyr/dist/plyr.css';
+import FirebaseAnalytics from '@/components/firebase-analytics'
+import { Analytics } from '@vercel/analytics/react'
 
 const geistSans = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })
@@ -93,8 +95,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
         <AuthProvider>
+          <FirebaseAnalytics />
           {children}
           <Toaster />
+          <Analytics />
         </AuthProvider>
       </body>
     </html>
