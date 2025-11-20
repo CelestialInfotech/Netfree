@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster'
 import 'plyr/dist/plyr.css';
 import FirebaseAnalytics from '@/components/firebase-analytics'
 import { Analytics } from '@vercel/analytics/react'
+import AdblockDetector from '@/components/AdblockDetector';
 
 const geistSans = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })
@@ -83,20 +84,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
   return (
-    // <html lang="en" suppressHydrationWarning>
-    //   <body className={`${geistSans.className} bg-background`}>
-    //     <AuthProvider>
-    //       {children}
-    //       <Toaster />
-    //     </AuthProvider>
-    //   </body>
-    // </html>
     <html lang="en" suppressHydrationWarning={true}>
       <head>
         <script src="https://fpyf8.com/88/tag.min.js" data-zone="186810" async data-cfasync="false"></script>
       </head>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
+
         <AuthProvider>
           <FirebaseAnalytics />
           {children}

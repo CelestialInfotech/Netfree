@@ -55,6 +55,27 @@ export default function Home() {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const handleContextMenu = (e) => e.preventDefault();
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "F12"
+          (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key))
+          (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <main className="bg-background min-h-screen">
       <Header />

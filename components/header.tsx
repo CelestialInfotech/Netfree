@@ -7,6 +7,7 @@ import { useAuth } from '@/context/auth-context'
 import { Search, Grid, LogOut, User, X, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+
 export function Header() {
   const router = useRouter()
   const pathname = usePathname()
@@ -99,7 +100,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-[60] bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-b border-surface">
       <nav className="relative px-4 py-4 sm:px-6 max-w-7xl mx-auto">
-
+        
         {/* ⭐ SEARCH PANEL */}
         {showSearch && (
           <div className="
@@ -203,7 +204,7 @@ export function Header() {
               <span className="text-white font-bold text-sm">NM</span> */}
             {/* </div> */}
             {/* <img src="/logo.png" alt="" className=' h-10 rounded-lg'/> */}
-            <img src="/namelogo.png" alt="" className=' h-8'/>
+            <img src="/namelogo.png" alt="" className=' h-8' />
             {/* <span className="font-bold text-lg hidden sm:inline text-foreground">NetMirror</span> */}
           </Link>
 

@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Play, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { Movie, MovieSlider } from '@/types/movie'
 import Link from 'next/link'
+import AdblockDetector from './AdblockDetector'
 
 interface HeroCarouselProps {
   movies: MovieSlider[]
@@ -29,8 +30,15 @@ export function HeroCarousel({ movies }: HeroCarouselProps) {
   if (!movie) return null
 
   return (
+
     <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[650px] overflow-hidden group">
       {/* Background Image */}
+      <AdblockDetector
+        onChange={(isBlocked) => {
+          console.log("Adblocker detected:", isBlocked);
+          // optionally send to analytics or adjust UX
+        }}
+      />
       <div
         className="absolute inset-0 bg-cover bg-center transition-smooth duration-500"
         style={{ backgroundImage: `url(${movie.img})` }}
