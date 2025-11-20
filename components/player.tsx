@@ -73,7 +73,7 @@ export default function MoviePlayer({ videoUrl, audioUrl }: Props) {
             hlsVideo.on(Hls.Events.ERROR, (_, data) => {
                 if (data.fatal) {
                     showError(`HLS Fatal Error: ${data.type}`);
-                    hlsVideo.destroy();
+                    hlsVideo?.destroy();
                 }
             });
 
@@ -92,7 +92,9 @@ export default function MoviePlayer({ videoUrl, audioUrl }: Props) {
                         "fullscreen",
                     ],
                     settings: ["quality", "speed"],
+                    
                 });
+                
 
                 plyrRef.current = localPlyr;
                 setReady(true);
@@ -175,8 +177,8 @@ export default function MoviePlayer({ videoUrl, audioUrl }: Props) {
     return (
         <div className="flex justify-center items-center h-full w-full">
             {!ready && (
-                <div className="w-full h-[60vh] flex items-center justify-center text-white">
-                    <div className="animate-spin h-12 w-12 rounded-full border-t-4 border-b-4 border-gray-300" />
+                <div className="w-full h-[60vh] flex items-center justify-center text-red-600">
+                    <div className="animate-spin h-12 w-12 rounded-full border-t-4 border-b-4 border-red-600" style={{ borderColor: "#dc2626 transparent #dc2626 transparent" }}/>
                 </div>
             )}
 

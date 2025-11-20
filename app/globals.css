@@ -85,3 +85,36 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #243144; /* slightly lighter on hover */
 }
+
+/* 🎨 Custom Plyr Theme */
+:root {
+  --plyr-color-main: #e50914;         /* Amber main color */
+  --plyr-video-controls-background: rgba(0, 0, 0, 0.5);
+  --plyr-video-controls-backdrop: rgba(0, 0, 0, 0.6);
+}
+
+/* Play/Pause button background */
+.plyr__control--overlaid {
+  background: #e50914 !important;    /* Amber */
+}
+
+
+.plyr__controls .plyr__control:hover {
+  background: #e50914 !important; /* Amber hover */
+}
+
+/* Progress bar */
+.plyr--full-ui input[type="range"] {
+  color: #e50914 !important;
+}
+
+/* Volume input */
+.plyr__volume input[type="range"] {
+  color: #e50914 !important;
+}
+
+/* Tooltip color */
+.plyr__tooltip {
+  background: #e50914 !important;
+  color: #ffffff  !important;
+}

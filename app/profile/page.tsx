@@ -81,11 +81,11 @@ export default function ProfilePage() {
       <Header />
 
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-6">Profile Settings</h1>
+        <h1 className="text-3xl font-bold mb-6">Account management</h1>
 
         {/* Profile Card */}
         <div className="bg-neutral-900 p-6 rounded-xl border border-neutral-700 space-y-6">
-          
+
           {/* Avatar + Name */}
           <div className="flex items-center gap-6">
             <img

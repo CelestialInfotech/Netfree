@@ -103,9 +103,9 @@ export default function PlayPage() {
 
   if (!videoUrl) {
     return (
-      <div className="flex justify-center items-center h-screen w-full">
-        <div className="w-full h-[60vh] flex items-center justify-center text-white">
-          <div className="animate-spin h-12 w-12 rounded-full border-t-4 border-b-4 border-gray-300" />
+      <div className="flex justify-center items-center h-screen w-full ">
+        <div className="w-full h-[60vh] flex items-center justify-center text-red-600">
+          <div className="animate-spin h-12 w-12 rounded-full border-t-4 border-b-4 border-red-600" style={{ borderColor: "#dc2626 transparent #dc2626 transparent" }}/>
         </div>
       </div>
     );

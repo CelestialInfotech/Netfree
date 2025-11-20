@@ -77,13 +77,15 @@ export function HeroCarousel({ movies }: HeroCarouselProps) {
                 <span>Watch Now</span>
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              className="border-foreground-muted text-foreground hover:border-primary hover:text-primary transition-smooth gap-2"
-            >
-              <Plus size={18} />
-              <span className="hidden sm:inline">Add to List</span>
-            </Button>
+            <Link href={`/movie/${movie.id}`}>
+              <Button
+                variant="outline"
+                className="border-foreground-muted text-foreground hover:border-primary hover:text-primary transition-smooth gap-2"
+              >
+                <Plus size={18} />
+                <span className="hidden sm:inline">Add to List</span>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
