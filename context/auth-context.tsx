@@ -79,12 +79,13 @@ import {
 } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyCxGTNoRirKf90XGPHd6q7Y2PTrWHvyz4g",
+  authDomain: "netfree-co.firebaseapp.com",
+  projectId: "netfree-co",
+  storageBucket: "netfree-co.firebasestorage.app",
+  messagingSenderId: "707360894491",
+  appId: "1:707360894491:web:1f5fbd7400c1e7594752be",
+  measurementId: "G-MV2QVXGH23"
 }
 
 // Prevent initializing Firebase twice
