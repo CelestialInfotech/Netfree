@@ -1,4 +1,6 @@
 'use client';
+export const dynamic = "force-dynamic";
+
 
 import MoviePlayer from '@/components/player';
 import { useEffect, useState } from 'react';
