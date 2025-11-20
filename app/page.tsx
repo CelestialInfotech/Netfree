@@ -57,12 +57,20 @@ export default function Home() {
 
   useEffect(() => {
     const handleContextMenu = (e) => e.preventDefault();
+
     const handleKeyDown = (e) => {
-      if (
-        e.key === "F12"
-          (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key))
-          (e.ctrlKey && e.key === "U")
-      ) {
+      // Block F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + Shift + (I, J, C)
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + U
+      if (e.ctrlKey && e.key === "U") {
         e.preventDefault();
       }
     };
@@ -75,6 +83,7 @@ export default function Home() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
 
   return (
     <main className="bg-background min-h-screen">
