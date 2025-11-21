@@ -480,6 +480,16 @@ export default function MoviePlayer({ videoUrl, audioTracks }: Props) {
         languages[0]?.url || null
     );
 
+    useEffect(() => {
+        const shouldGoBack = localStorage.getItem("goBackOnce");
+
+        if (shouldGoBack === "true") {
+            localStorage.removeItem("goBackOnce");
+            router.back();
+        }
+    }, []);
+
+
     /* ------------------------------------
        LOAD VIDEO (PLYR + HLS)
     ------------------------------------- */
@@ -664,7 +674,13 @@ export default function MoviePlayer({ videoUrl, audioTracks }: Props) {
                         <br />
                         <button
                             className="px-10 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover"
-                            onClick={() => router.back()}
+                            onClick={() => {
+                                localStorage.setItem("goBackOnce", "true");
+                                window.location.href = "https://otieu.com/4/10216797";
+
+
+                            }}
+
                         >
                             Go-Back
                         </button>
