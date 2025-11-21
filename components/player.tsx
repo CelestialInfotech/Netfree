@@ -484,15 +484,6 @@ export default function MoviePlayer({ videoUrl, audioTracks }: Props) {
        LOAD VIDEO (PLYR + HLS)
     ------------------------------------- */
 
-    const showError = (reason: string) => {
-        console.error("❌ VIDEO ERROR:", reason);
-        setTimeout(() => {
-            setError(true);
-            setReady(false);
-        }, 8000);
-
-    };
-
     useEffect(() => {
         const videoEl = videoRef.current;
         if (!videoEl) return;
@@ -529,14 +520,18 @@ export default function MoviePlayer({ videoUrl, audioTracks }: Props) {
 
             hlsVideo.on(Hls.Events.ERROR, (_, data) => {
                 if (data.fatal) {
-                    setError(true);
+                    setTimeout(() => {
+                        setError(true);
+                    }, 8000);
                     hlsVideo.destroy();
                 }
             });
         } else {
             videoEl.src = videoUrl;
             videoEl.onloadedmetadata = () => setReady(true);
-            videoEl.onerror = () => setError(true);
+            videoEl.onerror = () => setTimeout(() => {
+                setError(true);
+            }, 8000);
         }
 
         return () => {
