@@ -154,7 +154,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   getAuth,
@@ -184,6 +184,37 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+      const handleContextMenu = (e: { preventDefault: () => any; }) => e.preventDefault();
+  
+      const handleKeyDown = (e: { key: string; preventDefault: () => void; ctrlKey: any; shiftKey: any; }) => {
+        // Block F12
+        if (e.key === "F12") {
+          e.preventDefault();
+        }
+  
+        // Block Ctrl + Shift + (I, J, C)
+        if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+          e.preventDefault();
+        }
+  
+        // Block Ctrl + U
+        if (e.ctrlKey && e.key === "U") {
+          e.preventDefault();
+        }
+      };
+  
+      document.addEventListener("contextmenu", handleContextMenu);
+      document.addEventListener("keydown", handleKeyDown);
+  
+      return () => {
+        document.removeEventListener("contextmenu", handleContextMenu);
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
+  
+  
+    
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");

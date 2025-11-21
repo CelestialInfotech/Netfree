@@ -469,6 +469,7 @@ import { useEffect, useState } from 'react'
 import { Check, Download } from 'lucide-react'
 import { SeasonData } from '@/types/movie'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/context/auth-context'
 
 interface Episode {
   id: string
@@ -495,6 +496,36 @@ export function SeasonsSection({ seriesId, seasons }: { seriesId: string, season
   const [nextPageSeason, setNextPageSeason] = useState("")
   const [page, setPage] = useState(1)
   const [hoveredEpisode, setHoveredEpisode] = useState<string | null>(null)
+  const { user } = useAuth();   // <-- USER AUTH
+
+  useEffect(() => {
+    const handleContextMenu = (e: { preventDefault: () => any }) => e.preventDefault();
+
+    const handleKeyDown = (e: { key: string; preventDefault: () => void; ctrlKey: any; shiftKey: any }) => {
+      // Block F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + Shift + (I, J, C)
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + U
+      if (e.ctrlKey && e.key === "U") {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
 
   // -------------------------------------
@@ -603,11 +634,10 @@ export function SeasonsSection({ seriesId, seasons }: { seriesId: string, season
                 setPage(1)
                 fetchEpisodes(s.id, false)
               }}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
-                selectedSeason === index
-                  ? "bg-primary text-white"
-                  : "bg-surface-secondary text-foreground hover:bg-surface"
-              }`}
+              className={`px-6 py-2 rounded-lg font-semibold transition-all ${selectedSeason === index
+                ? "bg-primary text-white"
+                : "bg-surface-secondary text-foreground hover:bg-surface"
+                }`}
             >
               Season {s.s}
             </button>
@@ -634,7 +664,14 @@ export function SeasonsSection({ seriesId, seasons }: { seriesId: string, season
           {episodes.map((ep) => (
             <div
               key={ep.id}
-              onClick={() => router.push(`/player?id=${ep.id}`)}
+              onClick={() => {
+                if (user === null) {
+                  router.push("/login");
+                }
+                else {
+                  router.push(`/player?id=${ep.id}`)
+                }
+              }}
               className="cursor-pointer bg-[#10141f] rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 hover:bg-[#131823] transition-colors"
               onMouseEnter={() => setHoveredEpisode(ep.id)}
               onMouseLeave={() => setHoveredEpisode(null)}

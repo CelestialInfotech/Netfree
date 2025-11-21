@@ -24,6 +24,35 @@ export function Header() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const appsRef = useRef<HTMLDivElement | null>(null)
 
+  useEffect(() => {
+    const handleContextMenu = (e: { preventDefault: () => any }) => e.preventDefault();
+
+    const handleKeyDown = (e: { key: string; preventDefault: () => void; ctrlKey: any; shiftKey: any }) => {
+      // Block F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + Shift + (I, J, C)
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+        e.preventDefault();
+      }
+
+      // Block Ctrl + U
+      if (e.ctrlKey && e.key === "U") {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
 
   // 🔹 Close dropdowns on outside click
   useEffect(() => {
@@ -58,7 +87,7 @@ export function Header() {
   // ⭐ ACTIVE NAV LOGIC
   const isActive = (path: string) => pathname === path
   const isMoviesActive =
-    pathname.startsWith("/movie") || pathname === "/allmovies"
+    pathname.startsWith("/movies") || pathname === "/allmovies"
   const isShowsActive = pathname.startsWith("/shows")
 
   const handleSelect = () => {
@@ -93,14 +122,14 @@ export function Header() {
   const handleSearch = (e: any) => {
     e.preventDefault()
     if (!query.trim()) return
-    router.push(`/search?query=${encodeURIComponent(query)}`)
+    router.push(`/search?q=${(query)}`)
     setShowSearch(false)
   }
 
   return (
     <header className="sticky top-0 z-[60] bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-b border-surface">
       <nav className="relative px-4 py-4 sm:px-6 max-w-7xl mx-auto">
-        
+
         {/* ⭐ SEARCH PANEL */}
         {showSearch && (
           <div className="

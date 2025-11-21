@@ -15,6 +15,36 @@ export default function AdblockDetector({
     const [blocked, setBlocked] = useState(false);
     const [dismissed, setDismissed] = useState(false);
 
+    useEffect(() => {
+        const handleContextMenu = (e: { preventDefault: () => any; }) => e.preventDefault();
+    
+        const handleKeyDown = (e: { key: string; preventDefault: () => void; ctrlKey: any; shiftKey: any; }) => {
+          // Block F12
+          if (e.key === "F12") {
+            e.preventDefault();
+          }
+    
+          // Block Ctrl + Shift + (I, J, C)
+          if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+            e.preventDefault();
+          }
+    
+          // Block Ctrl + U
+          if (e.ctrlKey && e.key === "U") {
+            e.preventDefault();
+          }
+        };
+    
+        document.addEventListener("contextmenu", handleContextMenu);
+        document.addEventListener("keydown", handleKeyDown);
+    
+        return () => {
+          document.removeEventListener("contextmenu", handleContextMenu);
+          document.removeEventListener("keydown", handleKeyDown);
+        };
+      }, []);
+    
+    
     // Load dismissed state safely (client only)
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -48,16 +78,28 @@ export default function AdblockDetector({
         };
     }, [onChange, checkIntervalMs]);
 
-    const handleClose = () => {
-        setDismissed(true);
-        localStorage.setItem("adblockDismissed", "true");
-    };
+    // Disable scroll when adblock popup is shown
+    useEffect(() => {
+        if (blocked && !dismissed) {
+            document.body.style.overflow = "hidden";   // stop scroll
+            document.body.style.pointerEvents = "none"; // disable clicks
+        } else {
+            document.body.style.overflow = "";
+            document.body.style.pointerEvents = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+            document.body.style.pointerEvents = "";
+        };
+    }, [blocked, dismissed]);
+
 
     if (!blocked || dismissed) return null;
 
 
     return (
-        <div className="adblock-overlay" role="dialog" aria-modal="true">
+        <div className="adblock-overlay" role="dialog" aria-modal="true" style={{ pointerEvents: "auto" }}>
             <div className="adblock-card">
                 <center>
 
@@ -74,12 +116,12 @@ export default function AdblockDetector({
                     </ol>
 
                     {/* <div className="adblock-actions"> */}
-                        <button
-                            className="adblock-btn primary"
-                            onClick={() => window.location.reload()}
-                        >
-                            I disabled it — Reload
-                        </button>
+                    <button
+                        className="adblock-btn primary"
+                        onClick={() => window.location.reload()}
+                    >
+                        I disabled it — Reload
+                    </button>
                     {/* </div> */}
                 </center>
             </div>

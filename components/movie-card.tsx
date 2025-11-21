@@ -126,7 +126,7 @@ export function MovieCard({ movie }: MovieCardProps) {
         </div> */}
       </div>
 
-      {hovered && (
+      {/* {hovered && (
         <div
           className="fixed z-50"
           style={{
@@ -136,7 +136,7 @@ export function MovieCard({ movie }: MovieCardProps) {
         >
           <MovieHoverCard movie={movie} isVisible={hovered} movieid={movie.id} />
         </div>
-      )}
+      )} */}
     </div>
   )
 }

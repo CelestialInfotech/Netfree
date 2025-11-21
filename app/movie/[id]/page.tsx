@@ -35,6 +35,36 @@ export default function MovieDetailPage() {
 
   // ✅ Redirect to login if user is NOT logged in
 
+  useEffect(() => {
+      const handleContextMenu = (e: { preventDefault: () => any }) => e.preventDefault();
+  
+      const handleKeyDown = (e: { key: string; preventDefault: () => void; ctrlKey: any; shiftKey: any }) => {
+        // Block F12
+        if (e.key === "F12") {
+          e.preventDefault();
+        }
+  
+        // Block Ctrl + Shift + (I, J, C)
+        if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+          e.preventDefault();
+        }
+  
+        // Block Ctrl + U
+        if (e.ctrlKey && e.key === "U") {
+          e.preventDefault();
+        }
+      };
+  
+      document.addEventListener("contextmenu", handleContextMenu);
+      document.addEventListener("keydown", handleKeyDown);
+  
+      return () => {
+        document.removeEventListener("contextmenu", handleContextMenu);
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
+  
+  
 
   useEffect(() => {
     const fetchMovieData = async () => {
