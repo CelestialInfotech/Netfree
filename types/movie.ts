@@ -23,6 +23,51 @@ export interface Movie {
   type?: string
 }
 
+export interface Game {
+  subCategoryId: any[]
+  status:number
+  isMobile: true,
+  isNewGame: false,
+  order:number
+  threeD: false,
+  multiplayer: false,
+  orientation: string
+  scriptType: string
+  instruction: string
+  adultLevel: number
+  _id: string
+  id: number
+  name: string
+  categoryId: string
+  slug: string
+  image: string
+  url: string
+  description: string
+  size: number
+  height: number
+  script: string
+  metaTitle: string
+  metaDesc: string
+  metaKeyword: string
+  source: string
+  xmlFile: string
+  idealFor: string
+  likes: number
+  dislikes: number
+  ratings: null,
+  manualRating: number
+  highScore: number
+  totalPlayed: number
+  ownGame: true,
+  addDate: string
+  tags: any[]
+  createdAt: string
+  updatedAt:string
+  __v: number
+  mobileControlKeys: string
+  webControlKeys: string
+}
+
 export interface SeasonData {
   s: string      // season number
   id: string     // season API id
