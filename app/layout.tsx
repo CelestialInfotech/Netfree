@@ -125,10 +125,11 @@ export default function RootLayout({
           id="ad-script"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(s){s.dataset.zone='10342710',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+              (function(s){s.dataset.zone='10343432',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
             `,
           }}
         />
+
       </head>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
 
