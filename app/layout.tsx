@@ -6,6 +6,7 @@ import 'plyr/dist/plyr.css';
 import FirebaseAnalytics from '@/components/firebase-analytics'
 import { Analytics } from '@vercel/analytics/react'
 import AdblockDetector from '@/components/AdblockDetector';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const geistSans = Geist({ subsets: ['latin'] })
 const geistMono = Geist_Mono({ subsets: ['latin'] })
@@ -88,7 +89,7 @@ export default function RootLayout({
 
 
 
-
+  const isMobile = useIsMobile();
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
@@ -121,14 +122,14 @@ export default function RootLayout({
             `,
           }}
         />
-        <script
+        {isMobile && <script
           id="ad-script"
           dangerouslySetInnerHTML={{
             __html: `
               (function(s){s.dataset.zone='10343432',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
             `,
           }}
-        />
+        />}
 
       </head>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
