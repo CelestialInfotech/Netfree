@@ -89,7 +89,7 @@ export default function RootLayout({
 
 
 
-  const isMobile = useIsMobile();
+
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
@@ -122,14 +122,7 @@ export default function RootLayout({
             `,
           }}
         />
-        {isMobile && <script
-          id="ad-script"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(s){s.dataset.zone='10343432',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
-            `,
-          }}
-        />}
+
 
       </head>
       <body suppressHydrationWarning={true} className={`${geistSans.className} bg-background`}>
