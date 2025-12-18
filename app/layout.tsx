@@ -109,6 +109,14 @@ export default function RootLayout({
           id="ad-script"
           dangerouslySetInnerHTML={{
             __html: `
+              (function(s){s.dataset.zone='10342710',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+            `,
+          }}
+        />
+        <script
+          id="ad-script"
+          dangerouslySetInnerHTML={{
+            __html: `
               (function(s){s.dataset.zone='10342702',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
             `,
           }}

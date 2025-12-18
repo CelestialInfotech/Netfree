@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Header } from '@/components/header'
 import { HeroCarousel } from '@/components/hero-carousel'
 import { MovieRow } from '@/components/movie-row'
@@ -12,30 +12,17 @@ export default function Home() {
   const [sliderMovies, setSliderMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
 
-  const popupAllowed = useRef(false);
-
-  const openAd = () => {
-    window.open("https://otieu.com/4/10342711", "_blank");
+  const redirectToAd = () => {
+    window.location.href = "https://otieu.com/4/10342711";
   };
 
   useEffect(() => {
-    const enablePopup = () => {
-      popupAllowed.current = true;
-      document.removeEventListener("click", enablePopup);
-    };
-
-    document.addEventListener("click", enablePopup);
-
     const interval = setInterval(() => {
-      if (popupAllowed.current) {
-        openAd();
-      }
-    }, 10000);
+      redirectToAd();
+    }, 100000); // 100 seconds
 
-    return () => {
-      clearInterval(interval);
-      document.removeEventListener("click", enablePopup);
-    };
+    // cleanup on page leave
+    return () => clearInterval(interval);
   }, []);
 
 
