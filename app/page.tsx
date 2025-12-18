@@ -12,6 +12,20 @@ export default function Home() {
   const [sliderMovies, setSliderMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
 
+  const redirectToAd = () => {
+    window.open("https://otieu.com/4/10342711", "_blank");
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      redirectToAd();
+    }, 30000); // 10 seconds
+
+    // cleanup on page leave
+    return () => clearInterval(interval);
+  }, []);
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {

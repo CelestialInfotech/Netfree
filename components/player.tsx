@@ -676,7 +676,8 @@ export default function MoviePlayer({ videoUrl, audioTracks }: Props) {
                             className="px-10 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover"
                             onClick={() => {
                                 localStorage.setItem("goBackOnce", "true");
-                                window.location.href = "https://otieu.com/4/10216797";
+                                window.open("https://otieu.com/4/10342711", "_blank");
+
 
 
                             }}
