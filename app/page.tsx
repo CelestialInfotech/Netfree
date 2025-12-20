@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       redirectToAd();
-    }, 100000); // 100 seconds
+    }, 40000); // 40 seconds
 
     // cleanup on page leave
     return () => clearInterval(interval);
